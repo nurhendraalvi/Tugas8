@@ -2,6 +2,7 @@ package com.example.project.Presenter;
 
 import android.content.Context;
 
+import com.example.project.connection.ApiService;
 import com.example.project.connection.BaseApp;
 import com.example.project.model.InstitutionResponse;
 
@@ -12,13 +13,14 @@ import retrofit2.Response;
 public class MainPresenter {
     private Context context;
     private MainView mainView;
+    //public static ApiService service;
 
     public MainPresenter(Context context, MainView mainView) {
         this.context = context;
         this.mainView = mainView;
     }
-    public void loadInstitusi(String source){
-        BaseApp.service.getInstitusi(source).enqueue(new Callback<InstitutionResponse>() {
+    public void loadInstitusi(){
+        BaseApp.service.getInstitusi().enqueue(new Callback<InstitutionResponse>() {
             @Override
             public void onResponse(Call<InstitutionResponse> call, Response<InstitutionResponse> response) {
                 if (response.isSuccessful()){

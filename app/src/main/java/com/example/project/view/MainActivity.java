@@ -18,14 +18,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private RecyclerView A;
     private Adapter adapter;
     private MainPresenter mainPresenter;
-    private String institusi = "http://dev.farizdotid.com/api/instansi/semuainstansi";
+    //private String institusi = "http://dev.farizdotid.com/api/instansi/semuainstansi";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         A = findViewById(R.id.rec_artikel);
         mainPresenter = new MainPresenter(this, this);
-        mainPresenter.loadInstitusi(institusi);
+        mainPresenter.loadInstitusi();
     }
 
     @Override
