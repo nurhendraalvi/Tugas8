@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Activity.Detail_Item"
-    android:orientation="vertical"
-    android:background="@drawable/gradasi">
+    xmlns:tools="http://schemas.android.com/tools">
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:id="@+id/openDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradasi2">
+            android:background="@drawable/gradasi">
             <TextView
                 android:id="@+id/id"
                 android:layout_width="wrap_content"
@@ -113,7 +110,7 @@
                 android:textStyle="bold"
                 tools:text="long_ : " />
             <TextView
-                android:id="@+id/tv_id"
+                android:id="@+id/tv_id_lk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -128,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_below="@id/tv_id"
+                android:layout_below="@id/tv_id_lk"
                 android:layout_toRightOf="@id/id_kab"
                 android:maxLines="2"
                 android:textColor="@android:color/black"
@@ -219,6 +216,15 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="long_" />
+            <ImageButton
+                android:id="@+id/btn_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_thumb_up_black_24dp"
+                android:layout_below="@id/tv_long"
+                android:scaleType="center"
+                android:layout_alignRight="@id/tv_alamat"
+                />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

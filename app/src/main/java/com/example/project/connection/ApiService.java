@@ -9,4 +9,5 @@ import retrofit2.http.Query;
 public interface ApiService {
     @GET("/api/instansi/semuainstansi")
     Call<InstitutionResponse> getInstitusi();
+
 }

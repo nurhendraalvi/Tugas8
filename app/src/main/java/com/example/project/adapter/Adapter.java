@@ -2,24 +2,30 @@ package com.example.project.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.R;
+import com.example.project.entity.AppDatabase;
+import com.example.project.entity.DataInstansi;
 import com.example.project.model.InstansiItem;
-import com.example.project.view.Detail_Item;
+import com.example.project.view.Activity.Detail_Item;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     private List<InstansiItem> instansiItems;
     private Context context;
+    private String id, idkab, namakab, jenisins, namains, noins,alamat, lat, longg;
+    AppDatabase appDatabase;
 
     public Adapter( Context context, List<InstansiItem> instansiItems) {
         this.instansiItems = instansiItems;
@@ -47,6 +53,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     public class Holder extends RecyclerView.ViewHolder {
         private RelativeLayout open_D;
         private TextView tv_id, tv_idKab, tv_namaKab, tv_Jeniss, tv_nama, tv_no, tv_alam, tv_latt, tv_longg1;
+        private ImageButton img_btn;
+
         public Holder(@NonNull View itemView) {
             super(itemView);
             tv_id = itemView.findViewById(R.id.tv_id);
@@ -59,6 +67,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
             tv_latt = itemView.findViewById(R.id.tv_lat);
             tv_longg1 = itemView.findViewById(R.id.tv_long);
             open_D = itemView.findViewById(R.id.openDetail);
+            img_btn = itemView.findViewById(R.id.btn_like);
+            appDatabase = AppDatabase.iniDb(context);
         }
 
         public void bind(final int i) {
@@ -89,6 +99,53 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
                     Toast.makeText(context, instansiItems.get(i).getNamaInstansi(), Toast.LENGTH_SHORT).show();
                 }
             });
+            img_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //id = instansiItems.get(i).getId();
+                    //idkab = instansiItems.get(i).getIdKabupaten();
+                    //namakab = instansiItems.get(i).getNamaKabupaten();
+                    //jenisins = instansiItems.get(i).getJenisInstansi();
+                    //namains = instansiItems.get(i).getNamaInstansi();
+                    //noins = instansiItems.get(i).getNomorInstansi();
+                    ///alamat = instansiItems.get(i).getAlamatInstansi();
+                    //lat = instansiItems.get(i).getLat()
+                    //longg = instansiItems.get(i).getLong();
+                    final DataInstansi dataInstansi = new DataInstansi();
+                    dataInstansi.setId(instansiItems.get(i).getId());
+                    dataInstansi.setIdKabupaten(idkab);
+                    dataInstansi.setNamaKabupaten(namakab);
+                    dataInstansi.setJenisInstansi(instansiItems.get(i).getJenisInstansi());
+                    dataInstansi.setNamaInstansi(instansiItems.get(i).getNamaInstansi());
+                    dataInstansi.setNomorInstansi(instansiItems.get(i).getNomorInstansi());
+                    dataInstansi.setAlamatInstansi(instansiItems.get(i).getAlamatInstansi());
+                    dataInstansi.setLat(instansiItems.get(i).getLat());
+                    new InsertData(appDatabase,dataInstansi).execute();
+                }
+            });
         }
+    }
+    class InsertData extends AsyncTask<Void, Void, Long> {
+        private AppDatabase database;
+        private DataInstansi dataInstansi;
+
+        public InsertData(AppDatabase database, DataInstansi dataInstansi) {
+            this.database = database;
+            this.dataInstansi = dataInstansi;
+        }
+
+        @Override
+        protected Long doInBackground(Void... voids) {
+            return database.dao().insertData(dataInstansi);
+        }
+
+        @Override
+        protected void onPostExecute(Long aLong) {
+            super.onPostExecute(aLong);
+            Toast.makeText(context, "Like", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 }
