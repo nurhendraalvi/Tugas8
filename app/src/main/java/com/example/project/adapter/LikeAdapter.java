@@ -31,8 +31,8 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.Holder> {
     @NonNull
     @Override
     public LikeAdapter.Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_like, viewGroup, false);
+        //LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_like, viewGroup, false);
         Holder holder = new Holder(view);
         return holder;
     }
@@ -52,7 +52,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.Holder> {
     public class Holder extends RecyclerView.ViewHolder {
         public Holder(@NonNull View itemView) {
             super(itemView);
-            tv_id = itemView.findViewById(R.id.tv_id);
+            tv_id = itemView.findViewById(R.id.tv_id_lk);
             tv_idKab = itemView.findViewById(R.id.tv_id_kab);
             tv_namaKab = itemView.findViewById(R.id.tv_nama_kab);
             tv_Jeniss = itemView.findViewById(R.id.tv_jenis);
@@ -67,6 +67,23 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.Holder> {
         }
 
         public void bind(int i) {
+            final DataInstansi dataInstansi = list.get(i);
+            tv_id.setText(dataInstansi.getId());
+            tv_idKab.setText(dataInstansi.getIdKabupaten());
+            tv_namaKab.setText(dataInstansi.getNamaKabupaten());
+            tv_Jeniss.setText(dataInstansi.getJenisInstansi());
+            tv_nama.setText(dataInstansi.getNamaInstansi());
+            tv_no.setText(dataInstansi.getNomorInstansi());
+            tv_alam.setText(dataInstansi.getAlamatInstansi());
+            //tv_latt.setText(dataInstansi.getLat());
+           // tv_longg1.setText(dataInstansi.getLong());
+            img_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    view.deleteData(dataInstansi);
+                }
+            });
+
         }
     }
 }

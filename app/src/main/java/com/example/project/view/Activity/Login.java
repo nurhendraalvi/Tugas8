@@ -43,8 +43,8 @@ public class Login extends AppCompatActivity implements LoginMainView {
             @Override
             public void onClick(View v) {
                 cek_login();
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                //startActivity(intent);
             }
         });
         login_save = sharedPreferences.getBoolean("login_Save", false);
@@ -62,11 +62,13 @@ public class Login extends AppCompatActivity implements LoginMainView {
         });
     }
     public void cek_login() {
-        loginPresenter = new LoginPresenter(getApplicationContext(), this);
+        loginPresenter = new LoginPresenter(this);
        //user = username.getText().toString();
       // pass = password.getText().toString();
         //user = loginResponses.getToken();
         loginPresenter.login(username.getText().toString(), password.getText().toString());
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+        startActivity(intent);
 
     }
 

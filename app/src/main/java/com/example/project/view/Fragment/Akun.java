@@ -46,7 +46,7 @@ public class Akun extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button = view.findViewById(R.id.btn_1);
+        button = view.findViewById(R.id.btn_2);
         TV_1 = view.findViewById(R.id.nama);
         TV_2 = view.findViewById(R.id.email);
         pref = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);

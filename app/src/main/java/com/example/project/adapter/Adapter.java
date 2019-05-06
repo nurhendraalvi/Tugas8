@@ -120,7 +120,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
                     dataInstansi.setNamaInstansi(instansiItems.get(i).getNamaInstansi());
                     dataInstansi.setNomorInstansi(instansiItems.get(i).getNomorInstansi());
                     dataInstansi.setAlamatInstansi(instansiItems.get(i).getAlamatInstansi());
-                    dataInstansi.setLat(instansiItems.get(i).getLat());
+                   // dataInstansi.setLat(instansiItems.get(i).getLat());
                     new InsertData(appDatabase,dataInstansi).execute();
                 }
             });

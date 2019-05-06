@@ -59,8 +59,9 @@ public class Like extends Fragment implements MainContact.hapus {
         A = view.findViewById(R.id.rec_artikel);
         //mainPresenter = new PresenterDAO(context, this);
         //mainPresenter.loadInstitusi();
+        presenterDAO = new PresenterDAO(this);
         A.setLayoutManager(new LinearLayoutManager(context));
-        appDatabase = AppDatabase.iniDb(context);
+        appDatabase = AppDatabase.iniDb(getContext());
         readData(appDatabase);
     }
     public void readData(AppDatabase database) {
@@ -73,15 +74,15 @@ public class Like extends Fragment implements MainContact.hapus {
 
     @Override
     public void sukses() {
-        Toast.makeText(context, "unlike", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(context, Main2Activity.class));
+        Toast.makeText(getContext(), "unlike", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), Main2Activity.class));
     }
 
     @Override
     public void deleteData(final DataInstansi item) {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+            builder = new AlertDialog.Builder(getContext(), android.R.style.Theme_Material_Dialog_Alert);
         } else {
             builder = new AlertDialog.Builder(context);
         }
@@ -90,7 +91,7 @@ public class Like extends Fragment implements MainContact.hapus {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // resetForm();
-                        presenterDAO.deleteData(item, appDatabase);
+                        presenterDAO.deleteData(appDatabase, item);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

@@ -20,6 +20,11 @@ public class PresenterDAO implements MainContact.datapresenter {
         this.viewH = viewH;
     }
 
+    @Override
+    public void deleteData(AppDatabase database, DataInstansi dataInstansi) {
+        new DeleteData(database, dataInstansi).execute();
+    }
+
     class DeleteData extends AsyncTask<Void, Void, Void>{
         private AppDatabase database;
         private DataInstansi dataInstansi;
@@ -41,9 +46,6 @@ public class PresenterDAO implements MainContact.datapresenter {
             viewH.sukses();
         }
     }
-    @Override
-    public void deleteData(DataInstansi dataInstansi, AppDatabase database) {
-        new DeleteData(database,dataInstansi).execute();
-    }
+
 }
 

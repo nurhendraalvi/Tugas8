@@ -18,7 +18,9 @@ public interface MainContact {
     interface datapresenter{
         //readData(AppDatabase database);
         //void editData(String jml_siswa, String jml_guru, String nama_sekolah, String alamat, int id, AppDatabase database);
-        void deleteData(DataInstansi dataDiri, AppDatabase database);
+        //void deleteData(DataInstansi dataDiri, AppDatabase database);
+
+        void deleteData(AppDatabase database, DataInstansi dataInstansi);
     }
     interface Cetak extends View.OnClickListener{
         void getData(List<DataInstansi> list);

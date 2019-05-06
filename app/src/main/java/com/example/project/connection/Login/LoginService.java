@@ -27,10 +27,11 @@ public interface LoginService {
     Call<JSONObject> PostCreate(@Field("name") String name,
                                @Field("email") String email,
                                @Field("password") String password);
-    @GET("/users/")
-    Call<GetUserResponse> getUsers(@Path("id") String id);
+    @GET("/users")
+    Call<GetUserResponse> getUsers(@Path("name") String name);
 
-   // @PUT("/users/{id}")
-   // Call<UpdateResponse> UpdateAkun(@Path("id") String id);
+    @FormUrlEncoded
+    @PUT("/users/{user}")
+   Call<UpdateResponse> UpdateAkun(@Path("name") String name);
 
 }

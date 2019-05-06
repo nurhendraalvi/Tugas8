@@ -13,11 +13,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginPresenter {
-    private Context context;
+   // private Context context;
     private LoginMainView loginMainView;
 
-    public LoginPresenter(Context context, LoginMainView loginMainView) {
-        this.context = context;
+    public LoginPresenter(LoginMainView loginMainView) {
         this.loginMainView = loginMainView;
     }
 
