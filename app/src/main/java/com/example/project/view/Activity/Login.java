@@ -23,8 +23,8 @@ import java.util.List;
 public class Login extends AppCompatActivity implements LoginMainView {
     private LoginResponse loginResponses;
     LoginPresenter loginPresenter;
-    EditText username, password, buat_akun;
-    Button login;
+    EditText username, password;
+    Button login, buat_akun;
     String user, pass;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity implements LoginMainView {
         username = findViewById(R.id.tv_1);
         password = findViewById(R.id.tv_2);
         login = findViewById(R.id.btn);
+        buat_akun = findViewById(R.id.buat);
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         login.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +47,7 @@ public class Login extends AppCompatActivity implements LoginMainView {
                 startActivity(intent);
             }
         });
-        login_save = sharedPreferences.getBoolean("login_Save", true);
+        login_save = sharedPreferences.getBoolean("login_Save", false);
         if (login_save == true){
             Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
             startActivity(intent);
@@ -55,14 +56,17 @@ public class Login extends AppCompatActivity implements LoginMainView {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
     }
     public void cek_login() {
-        user = username.getText().toString();
-        pass = password.getText().toString();
-        loginPresenter.login(user, pass);
+        loginPresenter = new LoginPresenter(getApplicationContext(), this);
+       //user = username.getText().toString();
+      // pass = password.getText().toString();
+        //user = loginResponses.getToken();
+        loginPresenter.login(username.getText().toString(), password.getText().toString());
 
     }
 

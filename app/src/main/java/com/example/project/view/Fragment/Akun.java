@@ -2,6 +2,7 @@ package com.example.project.view.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.example.project.R;
 import com.example.project.model.login.getUser.GetUserResponse;
 import com.example.project.model.login.login_user.LoginResponse;
+import com.example.project.view.Activity.Login;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,11 +52,15 @@ public class Akun extends Fragment {
         pref = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
         editor = pref.edit();
         login = pref.getString("key", "");
-        TV_1.setText(getUserResponset.getName());
-        TV_2.setText(getUserResponset.getEmail());
+        //TV_1.setText(getUserResponset.getName());
+       // TV_2.setText(getUserResponset.getEmail());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editor.remove("key");
+                editor.commit();
+                startActivity(new Intent(getContext(), Login.class));
+                getActivity().finish();
 
             }
         });

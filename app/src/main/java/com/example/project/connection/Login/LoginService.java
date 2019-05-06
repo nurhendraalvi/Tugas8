@@ -11,15 +11,18 @@ import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface LoginService {
+    @FormUrlEncoded
     @POST("/users/login")
     Call<LoginResponse> PostUserResponse(@Field("email") String email,
-                                         @Field("password")  String password);
+                                         @Field("password") String password);
+    @FormUrlEncoded
     @POST("/user")
     Call<JSONObject> PostCreate(@Field("name") String name,
                                @Field("email") String email,
@@ -27,7 +30,7 @@ public interface LoginService {
     @GET("/users/")
     Call<GetUserResponse> getUsers(@Path("id") String id);
 
-    @PUT("/users/{id}")
-    Call<UpdateResponse> UpdateAkun(@Path("id") String id);
+   // @PUT("/users/{id}")
+   // Call<UpdateResponse> UpdateAkun(@Path("id") String id);
 
 }

@@ -21,10 +21,13 @@ import com.example.project.Presenter.MainPresenter;
 import com.example.project.Presenter.PresenterDAO;
 import com.example.project.R;
 import com.example.project.adapter.Adapter;
+import com.example.project.adapter.LikeAdapter;
 import com.example.project.entity.AppDatabase;
 import com.example.project.entity.DataInstansi;
 import com.example.project.view.Activity.Main2Activity;
 import com.example.project.view.MainContact;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +37,9 @@ public class Like extends Fragment implements MainContact.hapus {
     private Adapter adapter;
     private AppDatabase appDatabase;
     private PresenterDAO presenterDAO;
+    private LikeAdapter likeadapter;
     Context context;
+
     public Like() {
         // Required empty public constructor
     }
@@ -56,6 +61,14 @@ public class Like extends Fragment implements MainContact.hapus {
         //mainPresenter.loadInstitusi();
         A.setLayoutManager(new LinearLayoutManager(context));
         appDatabase = AppDatabase.iniDb(context);
+        readData(appDatabase);
+    }
+    public void readData(AppDatabase database) {
+        List list;
+        list = database.dao().getData();
+        //view.getData(list);
+        likeadapter = new LikeAdapter(context, list, this);
+        A.setAdapter(likeadapter);
     }
 
     @Override
