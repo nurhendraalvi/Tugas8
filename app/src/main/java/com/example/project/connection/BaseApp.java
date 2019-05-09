@@ -15,7 +15,7 @@ public class BaseApp extends Application {
     public static LoginService loginService;
     public static ApiService service;
     private String BASE_URL = "https://dev.farizdotid.com";
-    private String BASE_URL2 = "https://yutub-api.herokuapp.com/";
+    private String BASE_URL2 = "https://yutub-api.herokuapp.com";
     @Override
     public void onCreate() {
         super.onCreate();

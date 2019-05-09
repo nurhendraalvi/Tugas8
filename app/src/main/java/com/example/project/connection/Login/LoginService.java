@@ -8,11 +8,14 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -23,15 +26,16 @@ public interface LoginService {
     Call<LoginResponse> PostUserResponse(@Field("email") String email,
                                          @Field("password") String password);
     @FormUrlEncoded
-    @POST("/user")
-    Call<JSONObject> PostCreate(@Field("name") String name,
+    @POST("/users")
+    Call<Void> PostCreate(@Field("name") String name,
                                @Field("email") String email,
                                @Field("password") String password);
     @GET("/users")
-    Call<GetUserResponse> getUsers(@Path("name") String name);
+    Call<List<GetUserResponse>> getUsers(@Header("x-access-token") String token);
 
     @FormUrlEncoded
-    @PUT("/users/{user}")
-   Call<UpdateResponse> UpdateAkun(@Path("name") String name);
+    @PUT("/users")
+    Call<UpdateResponse> UpdateAkun(@Header("x-access-token") String token,
+                                    @Field("name") String name);
 
 }

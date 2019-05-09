@@ -17,10 +17,6 @@ public class DataInstansi {
         @ColumnInfo(name = "lat")
         private String lat;
 
-
-
-
-
         @ColumnInfo(name = "namaKabupaten")
         private String namaKabupaten;
 
@@ -52,9 +48,6 @@ public class DataInstansi {
             return lat;
         }
 
-
-
-
         public void setNamaKabupaten(String namaKabupaten){
             this.namaKabupaten = namaKabupaten;
         }
@@ -71,9 +64,7 @@ public class DataInstansi {
             return jenisInstansi;
         }
 
-        public void setAlamatInstansi(String alamatInstansi){
-            this.alamatInstansi = alamatInstansi;
-        }
+        public void setAlamatInstansi(String alamatInstansi){ this.alamatInstansi = alamatInstansi; }
 
         public String getAlamatInstansi(){
             return alamatInstansi;

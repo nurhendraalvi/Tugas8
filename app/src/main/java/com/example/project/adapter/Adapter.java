@@ -102,16 +102,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
             img_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    //id = instansiItems.get(i).getId();
-                    //idkab = instansiItems.get(i).getIdKabupaten();
-                    //namakab = instansiItems.get(i).getNamaKabupaten();
-                    //jenisins = instansiItems.get(i).getJenisInstansi();
-                    //namains = instansiItems.get(i).getNamaInstansi();
-                    //noins = instansiItems.get(i).getNomorInstansi();
-                    ///alamat = instansiItems.get(i).getAlamatInstansi();
-                    //lat = instansiItems.get(i).getLat()
-                    //longg = instansiItems.get(i).getLong();
                     final DataInstansi dataInstansi = new DataInstansi();
                     dataInstansi.setId(instansiItems.get(i).getId());
                     dataInstansi.setIdKabupaten(idkab);

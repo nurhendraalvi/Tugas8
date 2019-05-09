@@ -21,7 +21,6 @@ import com.example.project.model.login.login_user.LoginResponse;
 import java.util.List;
 
 public class Login extends AppCompatActivity implements LoginMainView {
-    private LoginResponse loginResponses;
     LoginPresenter loginPresenter;
     EditText username, password;
     Button login, buat_akun;
@@ -43,12 +42,12 @@ public class Login extends AppCompatActivity implements LoginMainView {
             @Override
             public void onClick(View v) {
                 cek_login();
-                //Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-                //startActivity(intent);
             }
         });
-        login_save = sharedPreferences.getBoolean("login_Save", false);
-        if (login_save == true){
+
+        login_save = sharedPreferences.getBoolean("login_save", false);
+
+        if (login_save){
             Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
             startActivity(intent);
         }
@@ -62,18 +61,15 @@ public class Login extends AppCompatActivity implements LoginMainView {
         });
     }
     public void cek_login() {
+        user = username.getText().toString();
+        pass = password.getText().toString();
         loginPresenter = new LoginPresenter(this);
-       //user = username.getText().toString();
-      // pass = password.getText().toString();
-        //user = loginResponses.getToken();
-        loginPresenter.login(username.getText().toString(), password.getText().toString());
-        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-        startActivity(intent);
+        loginPresenter.login(user, pass);
+ }
 
-    }
 
     @Override
-    public void getSuccess(GetAllUserResponse list) {
+    public void getSuccess(List<GetUserResponse> list) {
 
     }
 
@@ -91,11 +87,12 @@ public class Login extends AppCompatActivity implements LoginMainView {
     public void onFailure(String failureMessage) {
 
     }
-
     @Override
     public void getSuccess2(LoginResponse login_item) {
-        loginResponses = login_item;
         editor.putBoolean("login_save", true);
-        editor.putString("key", loginResponses.getToken());
+        editor.putString("key", login_item.getToken());
+        editor.commit();
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+        startActivity(intent);
     }
 }

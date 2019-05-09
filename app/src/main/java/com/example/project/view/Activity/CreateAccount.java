@@ -12,7 +12,10 @@ import com.example.project.Presenter.LoginMainView;
 import com.example.project.Presenter.LoginPresenter;
 import com.example.project.R;
 import com.example.project.model.login.getAll.GetAllUserResponse;
+import com.example.project.model.login.getUser.GetUserResponse;
 import com.example.project.model.login.login_user.LoginResponse;
+
+import java.util.List;
 
 public class CreateAccount extends AppCompatActivity implements LoginMainView {
     EditText ET1, ET2, ET3;
@@ -31,34 +34,33 @@ public class CreateAccount extends AppCompatActivity implements LoginMainView {
             @Override
             public void onClick(View v) {
                 loginPresenter.createAccount(ET1.getText().toString(), ET2.getText().toString(), ET3.getText().toString());
-                startActivity(new Intent(getApplicationContext(), Login.class));
+
             }
         });
 
     }
 
+
     @Override
-    public void getSuccess(GetAllUserResponse list) {
+    public void getSuccess(List<GetUserResponse> list) {
 
     }
 
     @Override
     public void setToast(String message) {
         Toast.makeText(this, message , Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), Login.class));
     }
-
     @Override
     public void onError(String errorMessage) {
+        Toast.makeText(this, errorMessage , Toast.LENGTH_SHORT).show();
 
     }
-
     @Override
     public void onFailure(String failureMessage) {
+        Toast.makeText(this, failureMessage , Toast.LENGTH_SHORT).show();
 
     }
-
     @Override
-    public void getSuccess2(LoginResponse listItem) {
-
-    }
+    public void getSuccess2(LoginResponse listItem) { }
 }
