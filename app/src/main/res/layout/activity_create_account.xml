@@ -16,19 +16,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:inputType="text"/>
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="E-Mail"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:inputType="text"/>
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:inputType="textPassword"/>
     <Button
         android:id="@+id/btn_create"
         android:layout_width="match_parent"

@@ -59,9 +59,6 @@ public class Akun extends Fragment implements LoginMainView {
         button = view.findViewById(R.id.btn_2);
         TV_1 = view.findViewById(R.id.nama);
         TV_2 = view.findViewById(R.id.email);
-       // login = getActivity().getIntent().getStringExtra("user");
-        //TV_1.setText(login);
-        //nama = TV_1.getText().toString();
         pref = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
         editor = pref.edit();
         token = pref.getString("key", "");
@@ -91,6 +88,7 @@ public class Akun extends Fragment implements LoginMainView {
     public void getSuccess(List<GetUserResponse> list) {
         TV_1.setText(list.get(0).getName());
         TV_2.setText(list.get(0).getEmail());
+        nama = TV_1.getText().toString();
     }
 
     @Override
